@@ -25,7 +25,7 @@ jobs:
 
       - name: Run test suite
         run: |
-          bin/rspec
+          bundle exec rspec
 
   lint:
     runs-on: ubuntu-latest
