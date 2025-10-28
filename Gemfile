@@ -49,3 +49,5 @@ group :test do
   gem "simplecov"
   gem "timecop"
 end
+
+gem "rubocop-rails-omakase", "~> 1.1"
