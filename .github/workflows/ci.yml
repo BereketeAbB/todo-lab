@@ -37,3 +37,30 @@ jobs:
       - name: Lint code for consistent style
         run: bin/rubocop -f github
 
+
+on:
+  pull_request:
+  push:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: .ruby-version
+          bundler-cache: true
+
+      - name: Setup database (if Rails)
+        run: |
+          bin/rails db:prepare
+
+      - name: Run test suite
+        run: |
+          bin/rspec
